@@ -25,6 +25,64 @@ menuToggle?.addEventListener('click', () => {
 
 navLinks.forEach((link) => link.addEventListener('click', closeMenu));
 
+const sampleListings = [
+  {
+    type: 'Example rental',
+    status: 'Coastal living',
+    location: 'Nyali · Mombasa',
+    title: 'Two-bedroom coastal apartment',
+    description: 'A bright, easy-going home for someone who wants the city close and the coast nearby.',
+    features: ['2 bedrooms', '2 bathrooms', 'Furnished'],
+    price: 'KSh 45,000 / month',
+    theme: 'sea',
+  },
+  {
+    type: 'Example sale',
+    status: 'Family home',
+    location: 'Bamburi · Mombasa',
+    title: 'Three-bedroom family home',
+    description: 'A comfortable example of the kind of space that can support a growing household and daily life.',
+    features: ['3 bedrooms', 'Private garden', 'Gated setting'],
+    price: 'KSh 8.5M guide',
+    theme: 'sunset',
+  },
+  {
+    type: 'Example opportunity',
+    status: 'Room to grow',
+    location: 'Mariakani · Coast region',
+    title: 'Quarter-acre development plot',
+    description: 'An example land opportunity for a buyer thinking about a future home, investment or small project.',
+    features: ['¼ acre', 'Road access', 'Growing area'],
+    price: 'KSh 2.4M guide',
+    theme: 'land',
+  },
+];
+
+const listingGrid = document.querySelector('[data-listings]');
+if (listingGrid) {
+  listingGrid.innerHTML = sampleListings.map((listing, index) => `
+    <article class="listing-card reveal ${index ? 'reveal-delay' : ''}">
+      <div class="listing-visual listing-visual-${listing.theme}" aria-hidden="true">
+        <span class="listing-orbit"></span>
+        <span class="listing-sun"></span>
+        <span class="listing-land"></span>
+        <span class="listing-home"></span>
+      </div>
+      <div class="listing-content">
+        <div class="listing-meta"><span>${listing.type}</span><strong>${listing.status}</strong></div>
+        <p class="listing-location">${listing.location}</p>
+        <h3>${listing.title}</h3>
+        <p class="listing-description">${listing.description}</p>
+        <ul class="listing-features">${listing.features.map((feature) => `<li>${feature}</li>`).join('')}</ul>
+        <div class="listing-footer">
+          <strong>${listing.price}</strong>
+          <a class="listing-link" href="#contact" data-property="${listing.title}">Ask about this <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </article>
+  `).join('');
+}
+
 const revealItems = document.querySelectorAll('.reveal');
 if ('IntersectionObserver' in window) {
   const revealObserver = new IntersectionObserver((entries, observer) => {
@@ -58,6 +116,16 @@ contactForm?.addEventListener('submit', (event) => {
   const name = new FormData(contactForm).get('name')?.toString().trim();
   contactNote.textContent = `Thanks${name ? `, ${name}` : ''} — your enquiry is ready to be connected to Kayolla Homes Care.`;
   contactForm.reset();
+});
+
+document.querySelectorAll('[data-property]').forEach((link) => {
+  link.addEventListener('click', () => {
+    const message = document.querySelector('#message');
+    const property = link.getAttribute('data-property');
+    if (message && property && !message.value) {
+      message.value = `I would like to know more about the sample listing: ${property}.`;
+    }
+  });
 });
 
 const year = document.querySelector('[data-year]');

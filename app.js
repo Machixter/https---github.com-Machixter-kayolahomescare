@@ -35,6 +35,8 @@ const sampleListings = [
     features: ['2 bedrooms', '2 bathrooms', 'Furnished'],
     price: 'KSh 45,000 / month',
     theme: 'sea',
+    image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=85',
+    imageAlt: 'Example modern coastal apartment exterior',
   },
   {
     type: 'Example sale',
@@ -45,6 +47,8 @@ const sampleListings = [
     features: ['3 bedrooms', 'Private garden', 'Gated setting'],
     price: 'KSh 8.5M guide',
     theme: 'sunset',
+    image: 'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=900&q=85',
+    imageAlt: 'Example family home exterior with a garden',
   },
   {
     type: 'Example opportunity',
@@ -55,6 +59,8 @@ const sampleListings = [
     features: ['¼ acre', 'Road access', 'Growing area'],
     price: 'KSh 2.4M guide',
     theme: 'land',
+    image: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=900&q=85',
+    imageAlt: 'Example open development land in a green coastal setting',
   },
 ];
 
@@ -62,11 +68,9 @@ const listingGrid = document.querySelector('[data-listings]');
 if (listingGrid) {
   listingGrid.innerHTML = sampleListings.map((listing, index) => `
     <article class="listing-card reveal ${index ? 'reveal-delay' : ''}">
-      <div class="listing-visual listing-visual-${listing.theme}" aria-hidden="true">
-        <span class="listing-orbit"></span>
-        <span class="listing-sun"></span>
-        <span class="listing-land"></span>
-        <span class="listing-home"></span>
+      <div class="listing-visual listing-visual-${listing.theme}">
+        <img class="listing-image" src="${listing.image}" alt="${listing.imageAlt}" loading="lazy" />
+        <span class="listing-image-shade"></span>
       </div>
       <div class="listing-content">
         <div class="listing-meta"><span>${listing.type}</span><strong>${listing.status}</strong></div>

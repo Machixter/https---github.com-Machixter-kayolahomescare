@@ -9,4 +9,4 @@ Static, responsive landing site for Kayolla Homes Care, based on the local Realt
 
 Open `index.html` directly or serve this folder with any static web server. The enquiry forms are intentionally frontend-only demos until a real contact destination is supplied.
 
-The profile references shown in the footer link to the Facebook and Realtor Kenya pages supplied for this build. The listings section contains clearly labelled sample data for demonstration; prices, availability and property details are not real inventory.
+The profile references shown in the footer link to the Facebook and Realtor Kenya pages supplied for this build. The listings section contains clearly labelled sample data for demonstration; prices, availability and property details are not real inventory. Listing cover photos are remote Unsplash images and should be replaced with Kayolla-owned property photography before launch.
